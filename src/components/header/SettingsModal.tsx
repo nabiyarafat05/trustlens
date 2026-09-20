@@ -31,7 +31,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-lg glass-panel rounded-2xl border border-slate-700/80 shadow-2xl p-6 bg-slate-900/95 overflow-hidden">
+      <div className="w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto glass-panel rounded-2xl border border-slate-700/80 shadow-2xl p-4 sm:p-6 bg-slate-900/95">
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-slate-800">
           <div className="flex items-center gap-3">
@@ -94,7 +94,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               To enable cloud multimodal models (Google Gemini or OpenAI Vision), add either of these variables in your local <code className="px-1.5 py-0.5 rounded bg-slate-800 text-cyan-300 font-mono text-[11px]">.env.local</code> file:
             </p>
 
-            <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-xs text-slate-300 space-y-1 break-all">
               <p className="text-slate-500"># Google Gemini (Multimodal Vision)</p>
               <p className="text-emerald-400">GEMINI_API_KEY=&quot;your-api-key-here&quot;</p>
               <p className="text-slate-500 mt-2"># Or OpenAI / OpenAI-Compatible (Ollama, Groq, etc.)</p>

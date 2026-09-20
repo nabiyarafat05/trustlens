@@ -152,13 +152,13 @@ export function TacticsAcademy() {
         </div>
 
         {/* Deep Dive Panel */}
-        <div className="md:col-span-8 glass-panel rounded-3xl p-6 sm:p-7 border border-slate-800 space-y-5 bg-slate-900/60">
+        <div className="md:col-span-8 min-w-0 glass-panel rounded-3xl p-4 sm:p-7 border border-slate-800 space-y-5 bg-slate-900/60">
           <div className="flex items-center gap-3 pb-4 border-b border-slate-800">
             <div className="p-2.5 rounded-2xl bg-slate-800 border border-slate-700">
               {selectedTactic.icon}
             </div>
-            <div>
-              <h4 className="text-lg font-bold text-slate-100">
+            <div className="min-w-0">
+              <h4 className="text-lg font-bold text-slate-100 break-words">
                 {selectedTactic.title}
               </h4>
               <p className="text-xs text-cyan-400 font-medium">
@@ -183,7 +183,7 @@ export function TacticsAcademy() {
               <h6 className="font-semibold text-amber-400 uppercase tracking-wider text-[11px]">
                 Observable In-the-Wild Example
               </h6>
-              <div className="p-3.5 rounded-xl bg-amber-950/20 border border-amber-500/20 text-amber-200/90 font-mono text-xs leading-relaxed">
+              <div className="p-3.5 rounded-xl bg-amber-950/20 border border-amber-500/20 text-amber-200/90 font-mono text-xs leading-relaxed break-words">
                 {selectedTactic.realExample}
               </div>
             </div>

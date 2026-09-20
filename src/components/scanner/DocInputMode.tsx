@@ -140,7 +140,7 @@ export function DocInputMode({ documentFile, onDocumentSelected }: DocInputModeP
           </div>
 
           {documentFile.textPreview && (
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs text-slate-400 font-mono line-clamp-3">
+            <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs text-slate-400 font-mono line-clamp-3 break-words">
               {documentFile.textPreview}
             </div>
           )}

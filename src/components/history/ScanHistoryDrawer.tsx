@@ -78,7 +78,7 @@ export function ScanHistoryDrawer({
         </div>
 
         <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
-          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+          <div className="flex flex-wrap items-center gap-1 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
             {['all', 'critical', 'high', 'medium', 'low'].map((level) => (
               <button
                 key={level}
@@ -152,7 +152,7 @@ export function ScanHistoryDrawer({
                       >
                         {item.overallRisk.toUpperCase()}
                       </Badge>
-                      <h5 className="text-sm font-semibold text-slate-100 truncate group-hover:text-cyan-300 transition-colors">
+                      <h5 className="text-sm font-semibold text-slate-100 break-words line-clamp-2 group-hover:text-cyan-300 transition-colors">
                         {item.headline}
                       </h5>
                     </div>
@@ -161,7 +161,7 @@ export function ScanHistoryDrawer({
                       {item.summary}
                     </p>
 
-                    <div className="flex items-center gap-3 text-[11px] text-slate-500 font-mono">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-500 font-mono">
                       <span>{new Date(item.timestamp).toLocaleString()}</span>
                       <span>•</span>
                       <span>Type: {item.contentType}</span>

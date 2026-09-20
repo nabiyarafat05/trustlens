@@ -67,7 +67,7 @@ export function RiskSignalsAccordion({ signals }: RiskSignalsAccordionProps) {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <div>
+        <div className="min-w-0">
           <h4 className="text-sm font-semibold text-slate-200">
             Observable Risk Signals ({signals.length})
           </h4>
@@ -134,11 +134,11 @@ export function RiskSignalsAccordion({ signals }: RiskSignalsAccordionProps) {
                       >
                         {signal.severity.toUpperCase()}
                       </Badge>
-                      <h5 className="text-sm font-semibold text-slate-100 truncate">
+                      <h5 className="text-sm font-semibold text-slate-100 break-words line-clamp-2">
                         {signal.title}
                       </h5>
                     </div>
-                    <p className="text-xs text-slate-400 truncate mt-0.5">
+                    <p className="text-xs text-slate-400 break-words line-clamp-2 mt-0.5">
                       {signal.description}
                     </p>
                   </div>

@@ -122,7 +122,7 @@ ${analysis.uncertainty.map((u) => `- ${u}`).join('\n')}
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-lg glass-panel rounded-3xl border border-slate-700 p-6 bg-slate-900/95 space-y-5 shadow-2xl">
+      <div className="w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto glass-panel rounded-3xl border border-slate-700 p-4 sm:p-6 bg-slate-900/95 space-y-5 shadow-2xl">
         <div className="flex items-center justify-between pb-3 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30">

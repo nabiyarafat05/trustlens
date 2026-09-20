@@ -42,7 +42,7 @@ export function LinkSafetyAnalysis({ links }: LinkSafetyAnalysisProps) {
                       link.isSuspicious ? 'text-red-400' : 'text-slate-400'
                     }`}
                   />
-                  <span className="font-mono text-xs text-slate-200 truncate">
+                  <span className="font-mono text-xs text-slate-200 break-all whitespace-normal">
                     {link.url}
                   </span>
                 </div>

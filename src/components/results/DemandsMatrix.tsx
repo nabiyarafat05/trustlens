@@ -89,7 +89,7 @@ export function DemandsMatrix({ requests }: DemandsMatrixProps) {
 
   return (
     <div className="glass-panel rounded-2xl p-5 border border-slate-800 space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h4 className="text-sm font-semibold text-slate-200">
             Detected Demands & Solicitations
@@ -100,17 +100,17 @@ export function DemandsMatrix({ requests }: DemandsMatrixProps) {
         </div>
 
         {detectedCount > 0 ? (
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-950 text-red-300 border border-red-500/40">
+          <span className="self-start text-xs font-semibold px-2.5 py-1 rounded-full bg-red-950 text-red-300 border border-red-500/40">
             {detectedCount} high-risk demand{detectedCount > 1 ? 's' : ''} detected
           </span>
         ) : (
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-500/40">
+          <span className="self-start text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-500/40">
             No sensitive solicitations detected
           </span>
         )}
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+      <div className="grid grid-cols-1 min-[375px]:grid-cols-2 sm:grid-cols-4 gap-2.5">
         {items.map((item) => {
           return (
             <div
@@ -140,7 +140,7 @@ export function DemandsMatrix({ requests }: DemandsMatrixProps) {
 
               <div>
                 <p
-                  className={`text-xs font-medium line-clamp-1 ${
+                  className={`text-xs font-medium break-words ${
                     item.detected ? 'text-red-100 font-semibold' : 'text-slate-400'
                   }`}
                 >
