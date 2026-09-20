@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { UploadCloud, Image as ImageIcon, X, RefreshCw, Clipboard, AlertCircle } from 'lucide-react';
+import { createWorker } from 'tesseract.js';
 import { Button } from '../ui/Button';
 
 interface ImageDropzoneProps {
@@ -10,6 +11,8 @@ interface ImageDropzoneProps {
     mimeType: string;
     fileName: string;
     fileSize: number;
+    extractedText?: string;
+    extractedText?: string;
   } | null;
   onImageSelected: (image: {
     dataUri: string;
@@ -38,14 +41,25 @@ export function ImageDropzone({ imageFile, onImageSelected }: ImageDropzoneProps
       }
 
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = async (e) => {
         const result = e.target?.result as string;
         if (result) {
+          let extractedText = '';
+          try {
+            const worker = await createWorker('eng');
+            const ocrResult = await worker.recognize(result);
+            extractedText = ocrResult.data.text.trim();
+            await worker.terminate();
+          } catch (ocrError) {
+            console.warn('Could not extract text from image:', ocrError);
+          }
+
           onImageSelected({
             dataUri: result,
             mimeType: file.type,
             fileName: file.name,
             fileSize: file.size,
+            extractedText,
           });
         }
       };

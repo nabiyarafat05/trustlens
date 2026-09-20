@@ -15,6 +15,58 @@ export class HeuristicFallbackProvider implements AIProvider {
     const startTime = Date.now();
     const content = (request.content || '').trim();
 
+    if (request.type === 'image' && !content) {
+      return {
+        overallRisk: 'unclear',
+        confidence: 35,
+        headline: 'Image Requires Visual Verification',
+        summary: 'No readable text was extracted from this image, so the heuristic engine cannot assess its visual or contextual risk signals.',
+        contentType: 'image',
+        detectedEntities: ['Unverified Sender'],
+        observedEvidence: ['Image received without readable text for heuristic inspection.'],
+        riskSignals: [],
+        positiveSignals: [],
+        unverifiedClaims: ['The image contents, sender identity, and any embedded destination cannot be verified by the offline heuristic engine.'],
+        requestsDetected: {
+          payment: false,
+          otp: false,
+          password: false,
+          personalInformation: false,
+          identityDocument: false,
+          bankInformation: false,
+          urgentAction: false,
+          remoteAccess: false,
+        },
+        links: [],
+        recommendedActions: [
+          'Verify any request through the organization official website or app opened independently.',
+          'Do not provide credentials, payment details, PINs, or one-time codes based on the image alone.',
+        ],
+        avoidActions: [
+          'Do not click links or call phone numbers shown in the image until independently verified.',
+        ],
+        verificationSteps: [
+          {
+            step: 'Use an independent official channel',
+            channel: 'Official Website or App',
+            details: 'Check for the same alert after navigating independently to the claimed organization.',
+          },
+        ],
+        uncertainty: [
+          'The offline heuristic engine cannot determine visual content without readable extracted text.',
+        ],
+        disclaimer: 'TrustLens provides probabilistic analysis based on observable digital signals. This image could not be fully inspected without readable text or a configured vision AI provider.',
+        timestamp: new Date().toISOString(),
+        metadata: {
+          inputType: request.type,
+          processingTimeMs: Date.now() - startTime,
+          providerName: this.name,
+          modelName: this.model,
+          heuristicsApplied: ['Image Text Extraction Unavailable'],
+        },
+      };
+    }
+
     // 1. Check if the content matches one of our curated sample scenarios exactly
     const matchedPreset = SAMPLE_SCENARIOS.find((s) => {
       return (
@@ -245,6 +297,12 @@ export class HeuristicFallbackProvider implements AIProvider {
       overallRisk = 'medium';
       headline = 'Moderate Caution: Mild Anomalies or Unverified Claims';
       summary = 'The communication warrants careful inspection. Take safe precautions and do not follow unprompted instructions.';
+    }
+
+    if (riskSignals.length === 0 && detectedEntities.length === 1 && detectedEntities[0] === 'Unspecified Sender' && content.length < 100) {
+      overallRisk = 'unclear';
+      headline = 'Insufficient Context for a Risk Judgment';
+      summary = 'The content contains too little attributable context to distinguish a routine notice from a deceptive request. Verify the sender and purpose independently.';
     }
 
     // Generate Safe Actions

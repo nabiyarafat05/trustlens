@@ -30,6 +30,7 @@ export function SmartScanner({ onStartAnalysis, isLoading }: SmartScannerProps) 
     mimeType: string;
     fileName: string;
     fileSize: number;
+    extractedText?: string;
   } | null>(null);
   const [documentFile, setDocumentFile] = useState<{
     fileName: string;
@@ -71,7 +72,7 @@ export function SmartScanner({ onStartAnalysis, isLoading }: SmartScannerProps) 
         fileData: imageFile.dataUri,
         mimeType: imageFile.mimeType,
         fileName: imageFile.fileName,
-        content: `Image screenshot: ${imageFile.fileName}`,
+        content: imageFile.extractedText || undefined,
         redactPii,
       };
     } else if (activeTab === 'text') {
